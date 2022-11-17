@@ -1,4 +1,5 @@
 from entities.user import User
+import re
 
 
 class UserInputError(Exception):
@@ -6,6 +7,10 @@ class UserInputError(Exception):
 
 
 class AuthenticationError(Exception):
+    pass
+
+
+class InvalidCredentialsError(Exception):
     pass
 
 
@@ -38,3 +43,12 @@ class UserService:
             raise UserInputError("Username and password are required")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        existing_user = self._user_repository.find_by_username(username)
+        if existing_user:
+            raise InvalidCredentialsError("Username already exists")
+
+        if not re.match("^[a-z]{3,}$", username):
+            raise InvalidCredentialsError("Invalid username")
+
+        if not re.match(".*[^a-zA-Z].*", password) or len(password) < 8:
+            raise InvalidCredentialsError("Invalid password")

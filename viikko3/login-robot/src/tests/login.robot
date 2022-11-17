@@ -18,4 +18,4 @@ Login With Nonexistent Username
 *** Keywords ***
 Create User And Input Login Command
     Create User  kalle  kalle123
-    Input Login Command
+    Input Command  login
