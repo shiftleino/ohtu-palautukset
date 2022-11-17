@@ -20,7 +20,8 @@ def main():
             players.append(player)
 
     print("Players from FIN:")
-    for player in players:
+    sorted_players = sorted(players, key=lambda x: x.points, reverse=True)
+    for player in sorted_players:
         print(player)
 
 if __name__ == "__main__":
