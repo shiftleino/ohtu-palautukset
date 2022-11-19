@@ -42,6 +42,11 @@ class UserService:
             raise UserInputError("Username and password are required")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+
+        existing_user = self._user_repository.find_by_username(username)
+        if existing_user:
+            raise UserInputError("Username already exists")
+
         if not re.match("^[a-z]{3,}$", username):
             raise UserInputError("Invalid username")
 
