@@ -9,13 +9,17 @@ class Komento(Enum):
     NOLLAUS = 3
     KUMOA = 4
 
+
 class Summa:
     def __init__(self, sovelluslogiikka: Sovelluslogiikka, lue_syote):
         self._sovelluslogiikka = sovelluslogiikka
         self._lue_syote = lue_syote
 
     def suorita(self):
-        self._sovelluslogiikka.plus(int(self._lue_syote()))
+        try:
+            self._sovelluslogiikka.plus(int(self._lue_syote()))
+        except Exception:
+            pass
 
 
 class Erotus:
@@ -24,7 +28,10 @@ class Erotus:
         self._lue_syote = lue_syote
 
     def suorita(self):
-        self.sovelluslogiikka.miinus(int(self._lue_syote()))
+        try:
+            self.sovelluslogiikka.miinus(int(self._lue_syote()))
+        except Exception:
+            pass
 
 
 class Nollaus:
@@ -33,7 +40,10 @@ class Nollaus:
         self._lue_syote = lue_syote
 
     def suorita(self):
-        self.sovelluslogiikka.nollaa()
+        try:
+            self.sovelluslogiikka.nollaa()
+        except Exception:
+            pass
 
 
 class Kumoa:
@@ -42,7 +52,10 @@ class Kumoa:
         self._lue_syote = lue_syote
 
     def suorita(self):
-        self.sovelluslogiikka.kumoa(int(self._lue_syote()))      
+        try:
+            self.sovelluslogiikka.kumoa()      
+        except Exception:
+            pass
 
 
 class Kayttoliittyma:
